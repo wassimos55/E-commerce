@@ -1,3 +1,31 @@
+<?php 
+ 
+ // 1 - connexion vers la BD
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $DBname ="ecommerce";
+
+  try {
+    $conn = new PDO("mysql:host=$servername;dbname=$DBname", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //echo "Connected successfully";
+  } catch(PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+  }
+ // 2- Creation de la requette
+  $requette = "SELECT * FROM categories";
+
+ // 3- exection de la requette pour
+  $resultat = $conn->query($requette);
+
+ // 4- resultat de requette
+  $categories = $resultat->fetchAll();
+  
+  //var_dump($categories);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +39,7 @@
     <!--Start Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">E-Shop</a>
+          <a class="navbar-brand" href="index.php">E-Shop</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -23,16 +51,19 @@
                   Categories
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Categorie 1</a></li>
-                  <li><a class="dropdown-item" href="#">Categorie 2</a></li>
-                  <li><a class="dropdown-item" href="#">Categorie 3</a></li>
+                  <?php 
+                       foreach($categories as $categorie){
+                         print '<li><a class="dropdown-item" href="#">'.$categorie['nom'].'</a></li>';
+                       }
+                  ?>
+
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="connexion.html">connexion</a>
+                <a class="nav-link active" aria-current="page" href="connexion.php">connexion</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="registre.html">registre</a>
+                <a class="nav-link active" aria-current="page" href="registre.php">registre</a>
               </li>
 
             </ul>

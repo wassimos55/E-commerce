@@ -11,7 +11,7 @@
     <!--Start Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">E-Shop</a>
+          <a class="navbar-brand" href="index.php">E-Shop</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -29,10 +29,10 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="connexion.html">connexion</a>
+                <a class="nav-link active" aria-current="page" href="connexion.php">connexion</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="registre.html">registre</a>
+                <a class="nav-link active" aria-current="page" href="registre.php">registre</a>
               </li>
 
             </ul>
@@ -46,18 +46,30 @@
     <!--End Navbar-->
     <!--Form Start-->
      <div class="col-12 p-5">
-         <h1 class="text-center">Connexion</h1>
+         <h1 class="text-center">Registre</h1>
         <form>
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email </label>
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Nom</label>
+              <input type="text" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Prenom</label>
+                <input type="text" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Telephone</label>
+                <input type="text" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Mot de Passe</label>
                 <input type="password" class="form-control" id="exampleInputPassword1">
             </div>
 
-            <button type="submit" class="btn btn-primary">Connecter</button>
+            <button type="submit" class="btn btn-primary">Sauvegarder</button>
           </form>
      </div>
     <!--Form End-->

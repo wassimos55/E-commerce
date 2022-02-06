@@ -1,29 +1,8 @@
 <?php 
- 
- // 1 - connexion vers la BD
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $DBname ="ecommerce";
 
-  try {
-    $conn = new PDO("mysql:host=$servername;dbname=$DBname", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //echo "Connected successfully";
-  } catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-  }
- // 2- Creation de la requette
-  $requette = "SELECT * FROM categories";
-
- // 3- exection de la requette pour
-  $resultat = $conn->query($requette);
-
- // 4- resultat de requette
-  $categories = $resultat->fetchAll();
-  
-  //var_dump($categories);
+include "inc/functions.php";
+$categories = getAllCategory();
+$produits = getAllProducts();
 
 ?>
 <!DOCTYPE html>
@@ -37,86 +16,31 @@
 </head>
 <body>
     <!--Start Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.php">E-Shop</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Categories
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <?php 
-                       foreach($categories as $categorie){
-                         print '<li><a class="dropdown-item" href="#">'.$categorie['nom'].'</a></li>';
-                       }
-                  ?>
-
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="connexion.php">connexion</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="registre.php">registre</a>
-              </li>
-
-            </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-          </div>
-        </div>
-    </nav>
+     <?php
+     include "inc/header.php";
+     ?>
     <!--End Navbar-->
     <!--Cards Start-->
     <div class="row col-12 mt-4">
-        <div class="col-3">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+        <?php
+          foreach ($produits as $produit) {
+            print '  
+            <div class="col-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">'.$produit['nom'].'</h5>
+                      <p class="card-text">'.$produit['description'].'</p>
+                      <a href="#" class="btn btn-primary">Afficher</a>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
+              </div>
+              ';
+
+          }
+        ?>
+
+
     </div>
     <!--Cards End-->
     <!--Footer Start-->

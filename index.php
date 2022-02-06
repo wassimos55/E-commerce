@@ -2,7 +2,16 @@
 
 include "inc/functions.php";
 $categories = getAllCategory();
-$produits = getAllProducts();
+
+if(!empty($_POST)){ //button search clicked
+    //echo "button search clicked";
+    //echo $_POST['search'];
+    $produits = seaechProduits($_POST['search']);
+}else{ 
+    $produits = getAllProducts();
+}
+
+
 
 ?>
 <!DOCTYPE html>

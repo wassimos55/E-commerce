@@ -71,4 +71,20 @@ function seaechProduits($keywords){
                 return $produits;
 }
 
+function getProduitById($id) {
+    // 1 - connexion vers la BD 
+    $conn = connect();
+
+    // 2 - creation de la requettes
+    $requettes = "SELECT * FROM produits WHERE id=$id";
+
+    //3 - execution de la requette 
+    $resultat = $conn->query($requettes);
+    //4 - resultat 
+
+    $produit = $resultat->fetch();
+    
+    return $produit;
+}
+
 ?>

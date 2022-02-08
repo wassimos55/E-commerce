@@ -87,4 +87,7 @@ function getProduitById($id) {
     return $produit;
 }
 
+public function AddVisteur($_POST);
+
+
 ?>

@@ -36,7 +36,7 @@ if(!empty($_POST)){ //button search clicked
             print '  
             <div class="col-3">
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="images/'.$produit['image'].'" class="card-img-top" alt="...">
                     <div class="card-body">
                       <h5 class="card-title">'.$produit['nom'].'</h5>
                       <p class="card-text">'.$produit['description'].'</p>

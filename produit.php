@@ -31,7 +31,7 @@ if (isset($_GET['id'])) {
     <div class="row col-12 mt-4">
 
         <div class="card col-8 offset-2">
-            <img src="..." class="card-img-top" alt="...">
+            <img src="images/<?php echo $produit['image'] ;?>" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title"><?php echo $produit['nom'] ?></h5>
                 <p class="card-text"><?php echo $produit['description'] ?></p>

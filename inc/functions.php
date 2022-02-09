@@ -87,7 +87,36 @@ function getProduitById($id) {
     return $produit;
 }
 
-public function AddVisteur($_POST);
+function AddVisteur($data){
+     // 1 - connexion vers la BD 
+     $conn = connect();    
+
+     $requette = "INSERT INTO visiteurs(nom,prenom,email,mp,telephone) VALUES('".$data['nom']."','".$data['prenom']."','".$data['email']."','".$data['mp']."','".$data['telephone']."')";
+
+    $resultat = $conn->query($requette); 
+
+    if ($resultat){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function ConnectVisiteur($data){
+   $conn = connect();
+   $email = $data['email'];
+   $mp = $data['mp'];
+   $requette = "SELECT * FROM visiteurs WHERE email='$email' AND mp='$mp'";
+
+   $resultat = $conn->query($requette);
+
+   $user = $resultat->fetch();
+
+   //var_dump($user);
+   return $user;
+
+   
+}
 
 
 ?>

@@ -5,7 +5,9 @@ $showRegistrationAlert = 0;
 $categories = getAllCategory();
 
 if(!empty($_POST)){ // click sur le button sauvgarder
-   AddVisteur($_POST);
+   if (AddVisteur($_POST)){
+    $showRegistrationAlert = 1;
+   }
 }
 
 ?>
@@ -63,12 +65,21 @@ if(!empty($_POST)){ // click sur le button sauvgarder
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.0/sweetalert2.all.min.js" integrity="sha512-oTE6Gwi026OvpTsIUmeIA4+Q3DfI/m0ejEbpd1+qDxngi14bMVH249Z5UJVvKSHeSDmlBtmhtRB+HXySaSCp9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-/*Swal.fire({
-  title: 'Error!',
-  text: 'Do you want to continue',
-  icon: 'error',
-  confirmButtonText: 'Cool'
-})*/
-</script>
+<?php
+if($showRegistrationAlert == 1){
+    print "
+    <script>
+    Swal.fire({
+      title: 'Success!',
+      text: 'Creation de compte avec success',
+      icon: 'success',
+      confirmButtonText: 'ok',
+      timer : 2000
+    })
+    </script>
+    ";
+}
+
+?>
+
 </html>

@@ -1,4 +1,10 @@
 <?php 
+session_start();
+
+if (isset($_SESSION['nom'])){ //il n'ya pas de saission //you can set ant columelse
+   header('location:profile.php');
+}
+
 
 include "inc/functions.php";
 $user= true;
@@ -6,6 +12,14 @@ $categories = getAllCategory();
 
 if(!empty($_POST)){ // click sur le button sauvgarder
     $user = ConnectVisiteur($_POST);
+    if(count($user)>0){ // utilisateur connectee
+        session_start();
+        $_SESSION['email'] = $user['email'];
+        $_SESSION['nom'] = $user['nom'];
+        $_SESSION['prenom'] = $user['prenom'];
+        $_SESSION['telephone'] = $user['telephone'];
+        header('location:profile.php'); // redirection vers la page profile
+    }
  }
 
 ?>

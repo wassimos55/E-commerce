@@ -90,8 +90,8 @@ function getProduitById($id) {
 function AddVisteur($data){
      // 1 - connexion vers la BD 
      $conn = connect();    
-
-     $requette = "INSERT INTO visiteurs(nom,prenom,email,mp,telephone) VALUES('".$data['nom']."','".$data['prenom']."','".$data['email']."','".$data['mp']."','".$data['telephone']."')";
+     $mphash = md5($data['mp']);
+     $requette = "INSERT INTO visiteurs(nom,prenom,email,mp,telephone) VALUES('".$data['nom']."','".$data['prenom']."','".$data['email']."','".$mphash."','".$data['telephone']."')";
 
     $resultat = $conn->query($requette); 
 
@@ -105,7 +105,7 @@ function AddVisteur($data){
 function ConnectVisiteur($data){
    $conn = connect();
    $email = $data['email'];
-   $mp = $data['mp'];
+   $mp = md5($data['mp']);
    $requette = "SELECT * FROM visiteurs WHERE email='$email' AND mp='$mp'";
 
    $resultat = $conn->query($requette);

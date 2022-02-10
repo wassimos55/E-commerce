@@ -1,4 +1,10 @@
 <?php 
+session_start();
+
+if (isset($_SESSION['nom'])){ //il n'ya pas de saission //you can set ant columelse
+   header('location:profile.php');
+}
+
 
 include "inc/functions.php";
 $showRegistrationAlert = 0;

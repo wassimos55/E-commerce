@@ -118,5 +118,21 @@ function ConnectVisiteur($data){
    
 }
 
+function ConnectAdmin($data){
+    $conn = connect();
+    $email = $data['email'];
+    $mp = md5($data['mp']);
+    $requette = "SELECT * FROM administrateur WHERE email='$email' AND mp='$mp'";
+ 
+    $resultat = $conn->query($requette);
+ 
+    $user = $resultat->fetch();
+ 
+    //var_dump($user);
+    return $user;
+ 
+    
+ }
+
 
 ?>

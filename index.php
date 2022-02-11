@@ -1,4 +1,5 @@
 <?php 
+session_start();
 
 include "inc/functions.php";
 $categories = getAllCategory();
@@ -53,9 +54,9 @@ if(!empty($_POST)){ //button search clicked
     </div>
     <!--Cards End-->
     <!--Footer Start-->
-    <div class="bg-dark text-center p-4 mt-5">
-        <p class="text-white">All rights reserved @2022 spark X</p> 
-    </div>
+    <?php
+      include "inc/footer.php";
+    ?>
     <!--Footer End-->
     
 </body>

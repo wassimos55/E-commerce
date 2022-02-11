@@ -12,7 +12,7 @@ $categories = getAllCategory();
 
 if(!empty($_POST)){ // click sur le button sauvgarder
     $user = ConnectVisiteur($_POST);
-    if(count($user)>0){ // utilisateur connectee
+    if(is_array($user) && count($user)>0){ // utilisateur connectee
         session_start();
         $_SESSION['email'] = $user['email'];
         $_SESSION['nom'] = $user['nom'];
@@ -57,9 +57,9 @@ if(!empty($_POST)){ // click sur le button sauvgarder
      </div>
     <!--Form End-->
     <!--Footer Start-->
-    <div class="bg-dark text-center p-5 mt-5">
-        <p class="text-white">All rights reserved @2022 spark X</p> 
-    </div>
+        <?php
+      include "inc/footer.php";
+    ?>
     <!--Footer End-->
     
 </body>

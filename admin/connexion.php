@@ -14,6 +14,7 @@ if(!empty($_POST)){ // click sur le button sauvgarder
     $user = ConnectAdmin($_POST);
     if( is_array($user) && count($user)>0){ // utilisateur connectee
         session_start();
+        $_SESSION['id'] = $user['id'];
         $_SESSION['email'] = $user['email'];
         $_SESSION['nom'] = $user['nom'];
         header('location:profile.php'); // redirection vers la page profile

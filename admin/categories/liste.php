@@ -134,7 +134,14 @@
                ';
             }  
             ?>
-
+            <?php if (isset($_GET['delete']) && $_GET['delete'] == "ok"){
+               print '
+                <div class="alert alert-success">
+                    Categorie Supprimée avec success
+                </div>
+               ';
+            }  
+            ?>
             <thead>
                 <tr>
                 <th scope="col">#</th>
@@ -144,7 +151,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php
+                 <?php
                    $i=0;
                    foreach($categories as $c){
                        $i++;
@@ -155,7 +162,7 @@
                             <td>'.$c['description'].'</td>
                             <td>
                                 <a href="" class="btn btn-success">Modifier</a>
-                                <a href="" class="btn btn-danger">Supprimer</a>
+                                <a href="supprimer.php?idc='.$c['id'].'" class="btn btn-danger">Supprimer</a>
                             </td>
                         </tr>
                        ';

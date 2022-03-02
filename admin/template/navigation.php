@@ -8,13 +8,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="categories/liste.php">
+            <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/ecommerce/admin/categories/liste.php">
               <span data-feather="file"></span>
               Ctegories
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/ecommerce/admin/produits/liste.php">
               <span data-feather="shopping-cart"></span>
               Products
             </a>
@@ -32,7 +32,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="../profile.php">
+            <a class="nav-link active" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/ecommerce/admin/profile.php">
               <span data-feather="layers"></span>
               Profile
             </a>

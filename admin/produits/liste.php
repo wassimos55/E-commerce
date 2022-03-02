@@ -73,7 +73,7 @@
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Liste des categories</h1>
+        <h1 class="h2">Liste des Produits</h1>
 
         <div>
              <!-- Button trigger modal -->
@@ -84,30 +84,9 @@
       <!--Start List-->
       <div>
         <table class="table">
-            <?php if (isset($_GET['ajout']) && $_GET['ajout'] == "ok"){
-               print '
-                <div class="alert alert-success">
-                    Categorie Ajoutée avec success
-                </div>
-               ';
-            }  
-            ?>
-            <?php if (isset($_GET['delete']) && $_GET['delete'] == "ok"){
-               print '
-                <div class="alert alert-success">
-                    Categorie Supprimée avec success
-                </div>
-               ';
-            }  
-            ?>
-            <?php if (isset($_GET['modif']) && $_GET['modif'] == "ok"){
-               print '
-                <div class="alert alert-success">
-                    Categorie Modifiée avec success
-                </div>
-               ';
-            }  
-            ?>
+
+
+
             <thead>
                 <tr>
                 <th scope="col">#</th>
@@ -118,21 +97,7 @@
             </thead>
             <tbody>
                  <?php
-                   $i=0;
-                   foreach($categories as $c){
-                       $i++;
-                       print '
-                       <tr>
-                            <th scope="row">'.$i.'</th>
-                            <td>'.$c['nom'].'</td>
-                            <td>'.$c['description'].'</td>
-                            <td>
-                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#editModal'.$c['id'].'">Modifier</a>
-                                <a href="supprimer.php?idc='.$c['id'].'" class="btn btn-danger">Supprimer</a>
-                            </td>
-                        </tr>
-                       ';
-                   }
+                 
                 ?>
 
 
@@ -156,19 +121,34 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ajout Categorie</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Ajout Produit</h5>
         <button type="button" class="btn" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-         <form action="ajout.php" method="post">
+         <form action="ajout.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
-               <input type="text" name="nom" class="form-control" placeholder="Nom de Categorie...">
+               <input type="text" name="nom" class="form-control" placeholder="Nom de Produit...">
             </div>
             <div class="form-group mt-4">
-               <textarea name="description" class="form-control" placeholder="Description de Categorie..."></textarea>
+               <textarea name="description" class="form-control" placeholder="Description de Produit..."></textarea>
             </div>
+            <div class="form-group mt-4">
+               <input type="number" name="prix" step="0.01" class="form-control" placeholder="Nom de Produit...">
+            </div>
+            <div class="form-group mt-4">
+               <input type="file" name="image"  class="form-control" >
+            </div>
+            <div class="form-group mt-4">
+               <select name="categorie"  class="form-control" >
+                 <?php   foreach($categories as $index => $c) 
+                    print '<option value="'.$c['id'].'">'. $c['nom'] .'</option> ';
+                 ?>
+                
+               </select>  
+            </div>
+            <input type="hidden" name="createur" value="<?php echo $_SESSION['id']; ?>" />
          
       </div>
       <div class="modal-footer">
@@ -220,6 +200,9 @@
 
 <script src="../../js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="../../js/dashboard.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="../../js/dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
   </body>
 </html>

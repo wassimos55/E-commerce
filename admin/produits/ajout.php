@@ -14,6 +14,11 @@ $createur = $_POST['createur'];
 
 $categorie = $_POST['categorie'];
 
+$quantite = $_POST['quantite'];
+
+$date_creation = date('Y-m-d');
+
+
 //Upload Image
 $target_dir = "../../images/";
 //$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -47,13 +52,25 @@ try {
 
 
     $requette = "INSERT INTO produits(nom,description,prix,image,createur,categorie,date_creation) VALUES('$nom','$description','$prix','$image','$createur','$categorie','$date')";
+    
 
     //4- execution de la requettes
 
     $resultat = $conn->query($requette);
 
+
+
+    
     if ($resultat) {
-        header('location:liste.php?ajout=ok');
+        $produit_id = $conn->lastInsertId();
+
+        $requette2 = "INSERT INTO stocks(produit,quantite,createur,date_creation) VALUES('$produit_id','$quantite','$createur','$date_creation')";
+        if($conn->query($requette2)){
+          header('location:liste.php?ajout=ok');
+        }else{
+          echo "Impossible d'ajouter le stock du produit";
+        }
+        
     }
 
 } catch(PDOException $e) {

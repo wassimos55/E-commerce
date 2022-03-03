@@ -180,7 +180,7 @@
                <textarea name="description" class="form-control" placeholder="Description de Produit..."></textarea>
             </div>
             <div class="form-group mt-4">
-               <input type="number" name="prix" step="0.01" class="form-control" placeholder="Nom de Produit...">
+               <input type="number" name="prix" step="0.01" class="form-control" placeholder="Prix de Produit...">
             </div>
             <div class="form-group mt-4">
                <input type="file" name="image"  class="form-control" >
@@ -193,6 +193,10 @@
                 
                </select>  
             </div>
+            <div class="form-group mt-4">
+               <input type="number" name="quantite" class="form-control" placeholder="Tapper la quantite de produit" />
+            </div>
+
             <input type="hidden" name="createur" value="<?php echo $_SESSION['id']; ?>" />
          
       </div>

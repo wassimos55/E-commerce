@@ -3,6 +3,7 @@
    
    include "../../inc/functions.php";
    $categories = getAllCategory();
+   $produits = getAllProducts();
 ?>
 <!doctype html>
 <html lang="en">
@@ -84,26 +85,70 @@
       <!--Start List-->
       <div>
         <table class="table">
+                    <?php if (isset($_GET['ajout']) && $_GET['ajout'] == "ok"){
+                      print '
+                        <div class="alert alert-success">
+                            Produit Ajoutée avec success
+                        </div>
+                      ';
+                    }  
+                    ?>
+                    <?php if (isset($_GET['delete']) && $_GET['delete'] == "ok"){
+                      print '
+                        <div class="alert alert-success">
+                            Produit Supprimée avec success
+                        </div>
+                      ';
+                    }  
+                    ?>
+                    <?php if (isset($_GET['modif']) && $_GET['modif'] == "ok"){
+                      print '
+                        <div class="alert alert-success">
+                            Produit Modifiée avec success
+                        </div>
+                      ';
+                    }  
+                    ?>
+                    <?php if (isset($_GET['erreur']) && $_GET['erreur'] == "duplicate"){
+                      print '
+                        <div class="alert alert-danger">
+                          Cette nom de produit existe deja
+                        </div>
+                      ';
+                    }  
+                    ?>
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                          
+                          //foreach($produits as $index => $c){ samiha li t7ib
+                          foreach($produits as $i => $p){
+                              $i++;
+                              print '
+                              <tr>
+                                    <th scope="row">'.$i.'</th>
+                                    <td>'.$p['nom'].'</td>
+                                    <td>'.$p['description'].'</td>
+                                    <td>
+                                        <a href="" class="btn btn-success" data-toggle="modal" data-target="#editModal'.$p['id'].'">Modifier</a>
+                                        <a onClick="return popUpDeleteCategorie()" href="supprimer.php?idc='.$p['id'].'" class="btn btn-danger">Supprimer</a>
+                                    </td>
+                                </tr>
+                              ';
+                          }
+                        ?>
 
 
 
-            <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Description</th>
-                <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                 <?php
-                 
-                ?>
-
-
-
-            </tbody>
-          </table>  
+                    </tbody>
+        </table>
          
 
       </div>
@@ -204,5 +249,10 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="../../js/dashboard.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+<script>
+  function popUpDeleteCategorie(){
+    return confirm("Vouez-vous vraiment supprimer la categorie ?");
+  }
+</script>
   </body>
 </html>

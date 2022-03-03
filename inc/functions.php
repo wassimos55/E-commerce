@@ -135,4 +135,20 @@ function ConnectAdmin($data){
  }
 
 
+
+
+ function getAllUsers(){
+    $conn = connect();
+
+    $requette = "SELECT * FROM visiteurs WHERE etat=0";
+ 
+    $resultat = $conn->query($requette);
+
+    $users = $resultat->fetchAll();
+
+    return $users;
+
+ }
+
+
 ?>

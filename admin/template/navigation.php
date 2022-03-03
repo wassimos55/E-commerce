@@ -20,7 +20,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/ecommerce/admin/visiteurs/liste.php">
               <span data-feather="users"></span>
               Customers
             </a>

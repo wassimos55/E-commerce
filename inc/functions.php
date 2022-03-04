@@ -149,6 +149,17 @@ function ConnectAdmin($data){
     return $users;
 
  }
+ function getStocks(){
+    $conn = connect();
+
+    $requette = "SELECT s.id,p.nom,s.quantite FROM produits p, stocks s WHERE  p.id = s.produit";
+ 
+    $resultat = $conn->query($requette);
+
+    $stocks = $resultat->fetchAll();
+
+    return $stocks;
+ }
 
 
 ?>

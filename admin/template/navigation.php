@@ -32,6 +32,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/ecommerce/admin/stocks/liste.php">
+              <span data-feather="bar-chart-2"></span>
+              Stocks
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link active" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/ecommerce/admin/profile.php">
               <span data-feather="layers"></span>
               Profile

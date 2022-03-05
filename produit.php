@@ -51,6 +51,13 @@ if (isset($_GET['id'])) {
             </ul>
 
         </div>
+        <div class="">
+            <form action="actions/commander.php" method="POST">
+                <input type="hidden" value="<?php echo $produit['id'] ?>" name="produit">
+                <input type="number" name="quantite" class="form-control" step="1" placeholder="Quantite du produit ....">
+                <button type="submit" class="btn btn-primary">Commander</button>
+            </form>
+        </div>
 
     </div>
     <!--Cards End-->

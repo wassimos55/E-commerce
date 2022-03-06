@@ -1,5 +1,11 @@
 <?php 
+session_start();
+//test user connectee
 
+if(!isset($_SESSION['nom'])){  //itha ken nom mouch mawjoud wela ay variable isset=mawjoud // ya3ni user non connecter
+  header('location:../connexion.php');
+  exit();
+}
 
 //var_dump($_POST);
 

@@ -28,8 +28,17 @@ if (isset($_GET['id'])) {
      include "inc/header.php";
      ?>
     <!--End Navbar-->
+
+
     <!--Cards Start-->
     <div class="row col-12 mt-4">
+        <?php if($_SESSION['etat'] ==0) {//utilisateur non validée
+            print'
+            <div class="alert alert-danger">
+               Compte non Validée
+            </div>
+            ';
+        } ?>  
 
         <div class="card col-8 offset-2">
             <img src="images/<?php echo $produit['image'] ;?>" class="card-img-top" alt="...">
@@ -54,7 +63,7 @@ if (isset($_GET['id'])) {
                 <form action="actions/commander.php" method="POST" class="d-flex">
                     <input type="hidden" value="<?php echo $produit['id'] ?>" name="produit">
                     <input type="number" name="quantite" class="form-control mt-3" step="1" placeholder="Quantite du produit ....">
-                    <button type="submit" class="btn btn-primary mt-3">Commander</button>
+                    <button type="submit" <?php if($_SESSION['etat'] ==0) { echo "disabled";} ?> class="btn btn-primary mt-3">Commander</button>
                 </form>
             </div>
 

@@ -19,6 +19,7 @@ if(!empty($_POST)){ // click sur le button sauvgarder
         $_SESSION['nom'] = $user['nom'];
         $_SESSION['prenom'] = $user['prenom'];
         $_SESSION['telephone'] = $user['telephone'];
+        $_SESSION['etat'] = $user['etat'];
         header('location:profile.php'); // redirection vers la page profile
     }
  }

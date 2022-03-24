@@ -2,10 +2,10 @@
 session_start();
 //test user connectee
 
-// if(!isset($_SESSION['nom'])){  //itha ken nom mouch mawjoud wela ay variable isset=mawjoud // ya3ni user non connecter
-//   header('location:../connexion.php');
-//   exit();
-// }
+if(!isset($_SESSION['nom'])){  //itha ken nom mouch mawjoud wela ay variable isset=mawjoud // ya3ni user non connecter
+  header('location:../connexion.php');
+  exit();
+}
 
 // selectionner le produit avec leur id
 include "../inc/functions.php";

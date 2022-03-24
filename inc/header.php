@@ -27,6 +27,20 @@
                     <a class="nav-link active" aria-current="page" href="profile.php">Profile</a>
                   </li>
                   ';
+
+                  if( isset($_SESSION['panier']) && is_array($_SESSION['panier'][3])){
+                    print ' 
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="panier.php">Panier <span class="text-danger">('. count($_SESSION['panier'][3]).')</span></a>
+                    </li>
+                    ';
+                  }else{
+                    print ' 
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="panier.php">Panier <span>(0)</span></a>
+                    </li>
+                    ';
+                  }
                }else {
                  print ' 
                   <li class="nav-item">

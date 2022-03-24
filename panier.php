@@ -1,5 +1,11 @@
 <?php 
 session_start();
+//var_dump($_SESSION['panier']);
+$total = 0;
+if(isset($_SESSION['panier'])){
+    $total = $_SESSION['panier'][1];
+}
+
 
 include "inc/functions.php";
 $categories = getAllCategory();
@@ -12,6 +18,8 @@ if(!empty($_POST)){ //button search clicked
     $produits = getAllProducts();
 }
 
+
+$commandes = array();//bech ma tjinich el error
 if(isset($_SESSION['panier'])){
     if(count($_SESSION['panier'])>0){
         $commandes = $_SESSION['panier'][3];
@@ -59,7 +67,7 @@ if(isset($_SESSION['panier'])){
                             <td>'.$commande[5].'</td>
                             <td>'.$commande[0].' Pieces</td>
                             <td>'.$commande[1].' DT</td>
-                           <td><button class="btn btn-danger">Supprimer</button></td> 
+                           <td><a href="actions/enlever-produit-panier.php?id='.$index.'" class="btn btn-danger">Supprimer</a></td> 
                         </tr>
                        ';
                    }
@@ -67,7 +75,12 @@ if(isset($_SESSION['panier'])){
             </tbody>
             </table>
         <!--Tabel End-->
-        <button class="btn btn-success" style="width:100px">Valider</button>
+            <div class="text-end mt-3">
+                <h3>Total : <?php echo $total; ?> DT</h3>
+                <hr>
+                <button class="btn btn-success" style="width:100px">Valider</button>
+            </div>
+
 
     </div>
     <!--Cards End-->

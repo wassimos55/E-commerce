@@ -78,7 +78,7 @@ if(isset($_SESSION['panier'])){
             <div class="text-end mt-3">
                 <h3>Total : <?php echo $total; ?> DT</h3>
                 <hr>
-                <button class="btn btn-success" style="width:100px">Valider</button>
+                <a href="actions/valider-panier.php" class="btn btn-success" style="width:100px">Valider</a>
             </div>
 
 

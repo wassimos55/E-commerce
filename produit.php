@@ -1,7 +1,8 @@
 <?php 
-
+session_start();
 include "inc/functions.php";
 $categories = getAllCategory();
+
 
 if (isset($_GET['id'])) {
     $produit = getProduitById($_GET['id']);

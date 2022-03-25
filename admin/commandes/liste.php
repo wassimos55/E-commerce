@@ -123,21 +123,22 @@
             </thead>
             <tbody>
                  <?php
-                //    $i=0;
-                //    foreach($categories as $c){
-                //        $i++;
-                //        print '
-                //        <tr>
-                //             <th scope="row">'.$i.'</th>
-                //             <td>'.$c['nom'].'</td>
-                //             <td>'.$c['description'].'</td>
-                //             <td>
-                //                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#editModal'.$c['id'].'">Modifier</a>
-                //                 <a href="supprimer.php?idc='.$c['id'].'" class="btn btn-danger">Supprimer</a>
-                //             </td>
-                //         </tr>
-                //        ';
-                //    }
+                   $i=0;
+                   foreach($commandes as $c){
+                       $i++;
+                       print '
+                       <tr>
+                            <th scope="row">'.$i.'</th>
+                            <td>'.$c['nom'].' '.$c['prenom'].'</td>
+                            <td>'.$c['total'].' DT</td>
+                            <td>'.$c['date_creation'].'</td>
+                            <td>
+                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#editModal'.$c['id'].'">Modifier</a>
+                                <a href="supprimer.php?idc='.$c['id'].'" class="btn btn-danger">Supprimer</a>
+                            </td>
+                        </tr>
+                       ';
+                   }
                 ?>
 
 
@@ -156,71 +157,6 @@
 </div>
 
 
-<!-- Modal Ajout -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ajout Categorie</h5>
-        <button type="button" class="btn" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-         <form action="ajout.php" method="post" id="addform">
-            <div class="form-group" id="blocknom">
-               <input type="text" name="nom" id="nom" class="form-control" placeholder="Nom de Categorie...">
-            </div>
-            <div class="form-group mt-4">
-               <textarea name="description" class="form-control" placeholder="Description de Categorie..."></textarea>
-            </div>
-         
-      </div>
-      <div class="modal-footer">
-       
-        <button type="submit" class="btn btn-primary">Ajouter</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-<?php
-  foreach($categories as $index => $categorie){ ?>
-
-    <!-- Modal Modifier  -->
-    <div class="modal fade" id="editModal<?php echo $categorie['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modifier Categorie</h5>
-            <button type="button" class="btn" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form action="modifier.php" method="post">
-                <input type="hidden" value="<?php echo $categorie['id'] ;?>" name="idc" />
-                <div class="form-group">
-                  <input type="text" name="nom" class="form-control" value="<?php echo $categorie['nom']; ?>" placeholder="Nom de Categorie...">
-                </div>
-                <div class="form-group mt-4">
-                  <textarea name="description" class="form-control"  placeholder="Description de Categorie..."><?php echo $categorie['description']; ?></textarea>
-                </div>
-            
-          </div>
-          <div class="modal-footer">
-          
-            <button type="submit" class="btn btn-primary">Modifier</button>
-          </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-
-<?php
-  }
-?>
 
 
 <script src="../../js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

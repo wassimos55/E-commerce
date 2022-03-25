@@ -161,10 +161,22 @@ function ConnectAdmin($data){
     return $stocks;
  }
 
- function getAllCommandes(){
+ function getAllPaniers(){
     $conn = connect();
 
     $requette = "SELECT v.nom, v.prenom , v.telephone, p.total, p.etat, p.date_creation, p.id FROM paniers p, visiteurs v WHERE p.visiteur = v.id ";
+ 
+    $resultat = $conn->query($requette);
+
+    $paniers = $resultat->fetchAll();
+
+    return $paniers;
+ }
+  
+ function getAllCommandes() {
+    $conn = connect();
+
+    $requette = "SELECT p.nom , p.image , c.quantite , c.total , c.panier FROM commandes c , produits p WHERE c.produit = p.id ";
  
     $resultat = $conn->query($requette);
 
@@ -172,6 +184,5 @@ function ConnectAdmin($data){
 
     return $commandes;
  }
-
 
 ?>

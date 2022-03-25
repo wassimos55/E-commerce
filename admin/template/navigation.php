@@ -40,7 +40,7 @@
           <li class="nav-item">
             <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST']; ?>/ecommerce/admin/commandes/liste.php">
               <span data-feather="bar-chart-2"></span>
-              Commandes
+              Paniers
             </a>
           </li>
           <li class="nav-item">

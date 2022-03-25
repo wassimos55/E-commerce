@@ -2,6 +2,7 @@
    session_start();  
    
    include "../../inc/functions.php";
+   $paniers = getAllPaniers();
    $commandes = getAllCommandes();
 ?>
 <!doctype html>
@@ -73,7 +74,7 @@
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Liste des commandes</h1>
+        <h1 class="h2">Liste des paniers</h1>
 
       </div>
     
@@ -124,17 +125,17 @@
             <tbody>
                  <?php
                    $i=0;
-                   foreach($commandes as $c){
+                   foreach($paniers as $p){
                        $i++;
                        print '
                        <tr>
                             <th scope="row">'.$i.'</th>
-                            <td>'.$c['nom'].' '.$c['prenom'].'</td>
-                            <td>'.$c['total'].' DT</td>
-                            <td>'.$c['date_creation'].'</td>
+                            <td>'.$p['nom'].' '.$p['prenom'].'</td>
+                            <td>'.$p['total'].' DT</td>
+                            <td>'.$p['date_creation'].'</td>
                             <td>
-                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#editModal'.$c['id'].'">Modifier</a>
-                                <a href="supprimer.php?idc='.$c['id'].'" class="btn btn-danger">Supprimer</a>
+                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#commandes'.$p['id'].'">Afficher</a>
+                                <a href="supprimer.php?idc='.$p['id'].'" class="btn btn-danger">Supprimer</a>
                             </td>
                         </tr>
                        ';
@@ -155,6 +156,66 @@
     </main>
   </div>
 </div>
+
+
+
+<?php
+  foreach($paniers as $index => $p){ ?>
+
+    <!-- Modal Modifier  -->
+    <div class="modal fade" id="commandes<?php echo $p['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Liste de Commandes</h5>
+            <button type="button" class="btn" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nom Produit</th>
+                    <th>Image</th>
+                    <th>Quantite</th>
+                    <th>Total</th>
+                    <th>Panier</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                     foreach ($commandes as $index => $c) {
+                       if($c['panier'] == $p['id']){ // si commande appartient (panier ouvert $p)
+                          print'
+                            <tr>
+                              <td>'.$c['nom'].'</td>
+                              <td><img src="../../images/'.$c['image'].'" width="100"/></td>
+                              <td>'.$c['quantite'].'</td>
+                              <td>'.$c['total'].' DT</td>
+                              <td>'.$c['panier'].'</td>
+                            </tr>
+                          ';
+                       }
+                     }
+                  ?>
+                </tbody>
+              </table>
+            
+          </div>
+          <div class="modal-footer">
+          
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+
+<?php
+  }
+?>
 
 
 

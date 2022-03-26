@@ -185,4 +185,10 @@ function ConnectAdmin($data){
     return $commandes;
  }
 
+ Function changerEtatPanier($data){
+    $conn = connect();
+    $requette = "UPDATE paniers SET etat='".$data['etat']."' WHERE id='".$data['panier_id']."'";
+    $resultat = $conn->query($requette);
+ }
+
 ?>

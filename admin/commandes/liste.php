@@ -1,7 +1,13 @@
 <?php
    session_start();  
-   
    include "../../inc/functions.php";
+   if(isset($_POST['btnSubmit'])){
+     //changer l'etat de panier
+     changerEtatPanier($_POST);
+   }
+
+
+
    $paniers = getAllPaniers();
    $commandes = getAllCommandes();
 ?>
@@ -95,6 +101,7 @@
                     Categorie Supprimée avec success
                 </div>
                ';
+
             }  
             ?>
             <?php if (isset($_GET['modif']) && $_GET['modif'] == "ok"){
@@ -134,8 +141,8 @@
                             <td>'.$p['total'].' DT</td>
                             <td>'.$p['date_creation'].'</td>
                             <td>
-                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#commandes'.$p['id'].'">Afficher</a>
-                                <a href="supprimer.php?idc='.$p['id'].'" class="btn btn-danger">Supprimer</a>
+                                <a class="btn btn-success" data-toggle="modal" data-target="#commandes'.$p['id'].'">Afficher</a>
+                                <a class="btn btn-primary" data-toggle="modal" data-target="#traiter'.$p['id'].'">Traiter</a>
                             </td>
                         </tr>
                        ';
@@ -202,6 +209,49 @@
                 </tbody>
               </table>
             
+          </div>
+          <div class="modal-footer">
+          
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+
+<?php
+  }
+?>
+
+
+<!--//////////////Traiter Modal/////////////////-->
+<?php
+  foreach($paniers as $index => $p){ ?>
+
+    <!-- Modal Modifier  -->
+    <div class="modal fade" id="traiter<?php echo $p['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Liste de Commandes</h5>
+            <button type="button" class="btn" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> <!--Fi 3outh ma nekteb list.php li hya nafs l page-->
+                <input type="hidden" value="<?php echo $p['id'];  ?>" name="panier_id">
+                <div class="form-group">
+                    <select name="etat" class="form-control"  id="">
+                          <option value="en livraison">En livraison</option>
+                          <option value="livraison termine">Livraison termine</option>
+                    </select> 
+                </div>
+                <div class="form-group">
+                  <button type="submit" name="btnSubmit" class="btn btn-primary mt-2">Sauvgarder</button>
+                </div>
+              </form>
           </div>
           <div class="modal-footer">
           

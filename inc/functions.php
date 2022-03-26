@@ -202,4 +202,15 @@ function ConnectAdmin($data){
    return $paniersEtat;
  }
 
+ Function EditAdmin($data){
+    $conn = connect();
+    if($data['mp'] !=""){//mot de passe a une valeur
+        $requette = "UPDATE administrateur SET nom='".$data['nom']."',email='".$data['email']."' ,email='".$data['email']."',mp='".md5($data['mp'])."'  WHERE id='".$data['id_admin']."'";
+    }else{
+        $requette = "UPDATE administrateur SET nom='".$data['nom']."',email='".$data['email']."' ,email='".$data['email']."' WHERE id='".$data['id_admin']."'";
+    }
+    $resultat = $conn->query($requette);
+    return true;
+ }
+
 ?>

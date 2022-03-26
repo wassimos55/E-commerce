@@ -189,7 +189,6 @@
 </div>
 <?php
   foreach($categories as $index => $categorie){ ?>
-
     <!-- Modal Modifier  -->
     <div class="modal fade" id="editModal<?php echo $categorie['id']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -208,19 +207,15 @@
                 </div>
                 <div class="form-group mt-4">
                   <textarea name="description" class="form-control"  placeholder="Description de Categorie..."><?php echo $categorie['description']; ?></textarea>
-                </div>
-            
+                </div>        
           </div>
-          <div class="modal-footer">
-          
+          <div class="modal-footer">     
             <button type="submit" class="btn btn-primary">Modifier</button>
           </div>
           </form>
         </div>
       </div>
     </div>
-
-
 <?php
   }
 ?>

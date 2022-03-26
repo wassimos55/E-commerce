@@ -5,10 +5,22 @@
      //changer l'etat de panier
      changerEtatPanier($_POST);
    }
-
-
-
+   
    $paniers = getAllPaniers();
+
+   if(isset($_POST['btnSearch'])){
+    //echo $_POST['etat'];
+    //exit;
+    if($_POST['etat'] == "tout"){
+      $paniers = getAllPaniers();
+    }else{
+      $paniers = getPanierByEtat($paniers,$_POST['etat']);
+    } 
+  }
+
+
+
+   
    $commandes = getAllCommandes();
 ?>
 <!doctype html>
@@ -86,46 +98,26 @@
     
       <!--Start List-->
       <div>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+          <div class="form-group d-flex">
+              <select name="etat" class="form-control ">
+                <option value="">-- Choisir l'etat --</option>
+                <option value="tout">Tout</option>
+                <option value="en cours">En cours</option>
+                <option value="en livraison">En livraison</option>
+                <option value="livraison termine">Livraison termine</option>
+              </select>
+              <input class="btn btn-primary " type="submit" name="btnSearch" Value="Chercher" />
+          </div>
+        </form>
         <table class="table">
-            <?php if (isset($_GET['ajout']) && $_GET['ajout'] == "ok"){
-               print '
-                <div class="alert alert-success">
-                    Categorie Ajoutée avec success
-                </div>
-               ';
-            }  
-            ?>
-            <?php if (isset($_GET['delete']) && $_GET['delete'] == "ok"){
-               print '
-                <div class="alert alert-success">
-                    Categorie Supprimée avec success
-                </div>
-               ';
-
-            }  
-            ?>
-            <?php if (isset($_GET['modif']) && $_GET['modif'] == "ok"){
-               print '
-                <div class="alert alert-success">
-                    Categorie Modifiée avec success
-                </div>
-               ';
-            }  
-            ?>
-            <?php if (isset($_GET['erreur']) && $_GET['erreur'] == "duplicate"){
-               print '
-                <div class="alert alert-danger">
-                   Cette nom de categorie existe deja
-                </div>
-               ';
-            }  
-            ?>
             <thead>
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">Client</th>
                 <th scope="col">Total</th>
                 <th scope="col">Date</th>
+                <th scope="col">Etat</th>
                 <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -140,6 +132,7 @@
                             <td>'.$p['nom'].' '.$p['prenom'].'</td>
                             <td>'.$p['total'].' DT</td>
                             <td>'.$p['date_creation'].'</td>
+                            <td>'.$p['etat'].'</td>
                             <td>
                                 <a class="btn btn-success" data-toggle="modal" data-target="#commandes'.$p['id'].'">Afficher</a>
                                 <a class="btn btn-primary" data-toggle="modal" data-target="#traiter'.$p['id'].'">Traiter</a>

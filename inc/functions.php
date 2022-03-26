@@ -191,4 +191,15 @@ function ConnectAdmin($data){
     $resultat = $conn->query($requette);
  }
 
+ Function getPanierByEtat($paniers,$etat){
+   $paniersEtat = array();
+
+   foreach($paniers as $p){
+       if($p['etat'] == $etat){
+           array_push($paniersEtat,$p); 
+       }
+   }
+   return $paniersEtat;
+ }
+
 ?>

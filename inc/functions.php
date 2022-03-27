@@ -213,4 +213,33 @@ function ConnectAdmin($data){
     return true;
  }
 
+ function getData(){
+     $data = array();
+     $conn = connect();
+      
+      // Calculer le nombre de produit dans la base
+     $requette = "SELECT COUNT(*) FROM produits";
+     $resultat= $conn->query($requette);
+     $nbrPrds = $resultat->fetch(); 
+     
+     // Calculer le nombre de clients dans la base
+     $requette1 = "SELECT COUNT(*) FROM categories";
+     $resultat= $conn->query($requette1);
+     $nbrCat = $resultat->fetch(); 
+     
+     // Calculer le nombre de clients dans la base
+     $requette2 = "SELECT COUNT(*) FROM visiteurs";
+     $resultat= $conn->query($requette2);
+     $nbrClients = $resultat->fetch(); 
+     
+     
+     $data["produits"] = $nbrPrds[0];
+     $data["categories"] = $nbrCat[0];
+     $data["clients"] = $nbrClients[0];
+
+     return $data;
+
+
+ }
+
 ?>

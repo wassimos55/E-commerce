@@ -14,7 +14,7 @@ include "../inc/functions.php";
  
 $conn = connect();
 
-$visiteur = $_SESSION['id'];
+$visiteur = $_SESSION['id'];  
 
 
 

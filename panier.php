@@ -2,9 +2,7 @@
 session_start();
 //var_dump($_SESSION['panier']);
 $total = 0;
-if(isset($_SESSION['panier'])){
-      $total = $_SESSION['panier'][1];
-}
+
 
 
 include "inc/functions.php";
@@ -73,12 +71,21 @@ if(isset($_SESSION['panier'])){
                             <td>'.$commande[1].' DT</td>
                            <td><a href="actions/enlever-produit-panier.php?id='.$index.'" class="btn btn-danger">Supprimer</a></td> 
                         </tr>
-                       ';
+                       '
+                       
+                       ;
+                       if(isset($_SESSION['panier'])){
+                        $total +=  $commande[1];
+                        }
                    }
                 ?>
             </tbody>
             </table>
         <!--Tabel End-->
+        <?php
+            
+
+        ?>    
             <div class="text-end mt-3">
                 <h3>Total : <?php echo $total; ?> DT</h3>
                 <hr>

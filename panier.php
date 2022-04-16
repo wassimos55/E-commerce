@@ -76,6 +76,7 @@ if(isset($_SESSION['panier'])){
                        ;
                        if(isset($_SESSION['panier'])){
                         $total +=  $commande[1];
+                        $_SESSION['panier'][1] = $total;
                         }
                    }
                 ?>
